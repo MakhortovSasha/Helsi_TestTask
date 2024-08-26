@@ -10,9 +10,9 @@ namespace Helsi_TestTask.Controllers
     public class TasksListsController : ControllerBase
     {
 
-        private readonly DefaultAPI API;
+        private readonly IDefaultAPI API;
 
-        public TasksListsController(DefaultAPI api)
+        public TasksListsController(IDefaultAPI api)
         {
             API = api;
         }

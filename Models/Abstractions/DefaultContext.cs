@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Helsi_TestTask.Models.Abstractions
 {
-    public interface DefaultContext
+    public interface IDefaultContext
     {
 
         public Task<bool> CreateTasksList(TasksList tasksList);

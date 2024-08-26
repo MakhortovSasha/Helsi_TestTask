@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Helsi_TestTask.Models
 {
-    public partial class MongoContext : DbContext, DefaultContext
+    public partial class MongoContext : DbContext, IDefaultContext
     {
         public DbSet<TasksList> TasksLists { get; set; }
         public DbSet<Sequence> Sequences { get; set; }
@@ -60,7 +60,7 @@ namespace Helsi_TestTask.Models
 
 
 
-    public partial class MongoContext : DbContext, DefaultContext
+    public partial class MongoContext : DbContext, IDefaultContext
     {
 
         private long GetNewTasksListID()

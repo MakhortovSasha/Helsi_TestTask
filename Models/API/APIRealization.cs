@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Helsi_TestTask.Models
 {
-    public class APIRealization : DefaultAPI
+    public class APIRealization : IDefaultAPI
     {
-        public DefaultContext Context { get; }
-        public APIRealization(DefaultContext context)
+        public IDefaultContext Context { get; }
+        public APIRealization(IDefaultContext context)
         {
             Context = context;
         }

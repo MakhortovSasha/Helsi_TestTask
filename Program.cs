@@ -16,9 +16,9 @@ builder.Services.AddControllers();
 /// builder.Services.AddDbContext<DefaultContext, MongoContext>(opt);
 ///
 
-builder.Services.AddSingleton<DefaultContext>(new MongoContext(new DbContextOptionsBuilder<MongoContext>().UseMongoDB("mongodb://localhost:27017", "TestTaskForHelsi").Options));
+builder.Services.AddSingleton<IDefaultContext>(new MongoContext(new DbContextOptionsBuilder<MongoContext>().UseMongoDB("mongodb://localhost:27017", "TestTaskForHelsi").Options));
 
-builder.Services.AddSingleton<DefaultAPI, APIRealization>();
+builder.Services.AddSingleton<IDefaultAPI, APIRealization>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

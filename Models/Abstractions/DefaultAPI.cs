@@ -3,7 +3,7 @@
 namespace Helsi_TestTask.Models.Abstractions
 {
 
-    public interface DefaultAPI
+    public interface IDefaultAPI
     {
 
 
