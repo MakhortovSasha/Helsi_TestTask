@@ -1,0 +1,6 @@
+@Helsi_TestTask_HostAddress = http://localhost:5113
+
+GET {{Helsi_TestTask_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
