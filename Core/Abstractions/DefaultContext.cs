@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Helsi_TestTask.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Helsi_TestTask.Models.Abstractions
+namespace Helsi_TestTask.Core.Abstractions
 {
     public interface IDefaultContext
     {

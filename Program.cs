@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Helsi_TestTask.Models;
-using Helsi_TestTask.Models.Abstractions;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.DependencyInjection;
+using Helsi_TestTask.Core.Abstractions;
+using Helsi_TestTask.Core.API;
 
 var builder = WebApplication.CreateBuilder(args);
 

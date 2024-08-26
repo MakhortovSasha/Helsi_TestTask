@@ -1,8 +1,7 @@
-﻿
-
-using Helsi_TestTask.Models.Abstractions;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Helsi_TestTask.Core.Abstractions;
+using Helsi_TestTask.Core.Models;
 
 namespace Helsi_TestTask.Models
 {

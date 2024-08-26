@@ -3,20 +3,20 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace Helsi_TestTask.Models
+namespace Helsi_TestTask.Core.Models
 {
     public class TasksList
     {
         public long Id { get; set; }
 
-        [MaxLength(255)]        
+        [MaxLength(255)]
         public required string Name { get; set; }
-              
+
         public required string Owner { get; set; }
 
         [JsonIgnore]
         [BsonRequired]
-        public DateTime Created {  get; set; }
+        public DateTime Created { get; set; }
 
         [JsonIgnore]
         [BsonRequired]
@@ -34,7 +34,7 @@ namespace Helsi_TestTask.Models
                 throw new ArgumentNullException(nameof(New));
             }
 
-            
+
             Name = New.Name;
             Owner = New.Owner;
             Created = New.Created;
@@ -60,7 +60,7 @@ namespace Helsi_TestTask.Models
         [JsonIgnore]
         [BsonIgnore]
         public long Id { get; set; } //for regular DB realizations'
-        public required string Title { get; set; } 
+        public required string Title { get; set; }
         public string? Description { get; set; }
         [DefaultValue(false)]
         public bool IsComplete { get; set; }

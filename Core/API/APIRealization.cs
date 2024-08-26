@@ -1,7 +1,8 @@
-﻿using Helsi_TestTask.Models.Abstractions;
+﻿using Helsi_TestTask.Core.Abstractions;
+using Helsi_TestTask.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Helsi_TestTask.Models
+namespace Helsi_TestTask.Core.API
 {
     public class APIRealization : IDefaultAPI
     {
@@ -16,10 +17,10 @@ namespace Helsi_TestTask.Models
         private bool CheckReadAccess(string requester, long id)
         {
 
-            if(! CheckModifyAccess(requester, id))
+            if (!CheckModifyAccess(requester, id))
             {
                 var exists = Context.GetRelations().Any(r => r.Id == id && r.Recepients != null && r.Recepients.Contains(requester));
-                if(!exists) { return false; }
+                if (!exists) { return false; }
             }
             return true;
         }
@@ -49,7 +50,7 @@ namespace Helsi_TestTask.Models
             Task<TasksList?> task = Context.GetOneTasksList(id);
             task.Wait();
             var tasklist = task.Result;
-            if (tasklist!=null && tasklist.Owner == requester)
+            if (tasklist != null && tasklist.Owner == requester)
                 return true;
             return false;
         }
@@ -89,7 +90,7 @@ namespace Helsi_TestTask.Models
                 position = 1;
             orderby = orderby ?? string.Empty;
 
-          //var readableTLsIDs = await Context.GetRelations().Where(r => r.Recepients != null && r.Recepients.Contains(requester)).AsNoTracking().Select(r => r.Id).ToListAsync(); doesn't need asnotracking in case of <Select>
+            //var readableTLsIDs = await Context.GetRelations().Where(r => r.Recepients != null && r.Recepients.Contains(requester)).AsNoTracking().Select(r => r.Id).ToListAsync(); doesn't need asnotracking in case of <Select>
 
             var readableTLsIDs = await Context.GetRelations().Where(r => r.Recepients != null && r.Recepients.Contains(requester)).Select(r => r.Id).ToListAsync();
 
@@ -99,13 +100,13 @@ namespace Helsi_TestTask.Models
             switch (orderby.ToLower().Trim())
             {
                 case "created":
-                    everyEnabledTL =  everyEnabledTL.OrderBy(b => b.Created);
+                    everyEnabledTL = everyEnabledTL.OrderBy(b => b.Created);
                     break;
                 case "updated":
-                    everyEnabledTL =  everyEnabledTL.OrderBy(b => b.LastUpdate);
+                    everyEnabledTL = everyEnabledTL.OrderBy(b => b.LastUpdate);
                     break;
                 case "id":
-                    everyEnabledTL =  everyEnabledTL.OrderBy(b => b.Id);
+                    everyEnabledTL = everyEnabledTL.OrderBy(b => b.Id);
                     break;
                 default:
                     break;
@@ -129,7 +130,7 @@ namespace Helsi_TestTask.Models
         {
             var toDelete = await Context.GetOneTasksList(id);
 
-            if(toDelete== null || !CheckDeleteAccess(requester, id)) return false;
+            if (toDelete == null || !CheckDeleteAccess(requester, id)) return false;
             return await Context.Delete(toDelete);
 
         }
@@ -148,10 +149,10 @@ namespace Helsi_TestTask.Models
 
             if (relation.Recepients == null)
                 relation.Recepients = new List<string>();
-            foreach(var r  in newRecepients)
-                if(!relation.Recepients.Contains(r))
+            foreach (var r in newRecepients)
+                if (!relation.Recepients.Contains(r))
                     relation.Recepients.Add(r);
-            
+
             return await Context.UpdateRelation(relation);
         }
 
@@ -187,8 +188,8 @@ namespace Helsi_TestTask.Models
 
         public async Task<bool> TasksListExists(string userid, string Name)
         {
-            var existing =await Context.GetTasksLists().FirstOrDefaultAsync(x => x.Owner == userid && x.Name == Name);
-            if (existing==null)return false;
+            var existing = await Context.GetTasksLists().FirstOrDefaultAsync(x => x.Owner == userid && x.Name == Name);
+            if (existing == null) return false;
 
             return true;
         }

@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Helsi_TestTask.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace Helsi_TestTask.Models.Abstractions
+namespace Helsi_TestTask.Core.Abstractions
 {
 
     public interface IDefaultAPI
@@ -9,7 +10,7 @@ namespace Helsi_TestTask.Models.Abstractions
 
         public Task<bool> CreateTaskList(string owner, TasksList tasksList);
         public Task<TasksList?> GetTasksList(string requester, long id);
-        public Task<List<TasksList>> GetOwnedTaskLists(string requester, int? page, string? orderby );
+        public Task<List<TasksList>> GetOwnedTaskLists(string requester, int? page, string? orderby);
         public Task<bool> UpdateTaskList(string requester, long id, TasksList tasksList);
         public Task<bool> DeleteTaskList(string requester, long id);
         public Task<bool> AddRecepient(string requester, long id, string newRecepient);
@@ -22,5 +23,5 @@ namespace Helsi_TestTask.Models.Abstractions
 
     }
 
-    
+
 }

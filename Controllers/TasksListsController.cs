@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using Helsi_TestTask.Models;
-using Helsi_TestTask.Models.Abstractions;
+using Helsi_TestTask.Core.Abstractions;
+using Helsi_TestTask.Core.Models;
 
 namespace Helsi_TestTask.Controllers
 {
