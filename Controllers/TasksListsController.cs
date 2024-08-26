@@ -42,9 +42,9 @@ namespace Helsi_TestTask.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TasksList>>> GetTasksLists([FromHeader] string userid, [FromQuery] int? page, [FromQuery] string? orderby)
         {
-            var tasklists = await API.GetOwnedTaskLists(userid, page, orderby);
-            if (tasklists != null)
-                return tasklists;
+            var taskslists = await API.GetOwnedTaskLists(userid, page, orderby);
+            if (taskslists != null && taskslists.Count>0)
+                return taskslists;
 
             return NotFound();
         }

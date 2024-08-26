@@ -57,6 +57,9 @@ namespace Helsi_TestTask.Models
 
     public class Task
     {
+        [JsonIgnore]
+        [BsonIgnore]
+        public long Id { get; set; } //for regular DB realizations'
         public required string Title { get; set; } 
         public string? Description { get; set; }
         [DefaultValue(false)]

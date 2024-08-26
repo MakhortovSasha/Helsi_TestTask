@@ -18,7 +18,7 @@ namespace Helsi_TestTask.Models
 
             if(! CheckModifyAccess(requester, id))
             {
-                var exists = Context.GetRelations().Any(r => r.Id == id || r.Recepients != null && r.Recepients.Contains(requester));
+                var exists = Context.GetRelations().Any(r => r.Id == id && r.Recepients != null && r.Recepients.Contains(requester));
                 if(!exists) { return false; }
             }
             return true;
@@ -28,7 +28,7 @@ namespace Helsi_TestTask.Models
         {
             if (!CheckDeleteAccess(requester, id))
             {
-                var exists = Context.GetRelations().Any(r => r.Id == id || r.Recepients != null && r.Recepients.Contains(requester));
+                var exists = Context.GetRelations().Any(r => r.Id == id && r.Recepients != null && r.Recepients.Contains(requester));
                 if (!exists) { return false; }
             }
             return true;
@@ -38,7 +38,7 @@ namespace Helsi_TestTask.Models
         {
             if (!CheckDeleteAccess(requester, tasksList))
             {
-                var exists = Context.GetRelations().Any(r => r.Id == tasksList.Id || r.Recepients != null && r.Recepients.Contains(requester));
+                var exists = Context.GetRelations().Any(r => r.Id == tasksList.Id && r.Recepients != null && r.Recepients.Contains(requester));
                 if (!exists) { return false; }
             }
             return true;
@@ -60,6 +60,10 @@ namespace Helsi_TestTask.Models
                 return true;
             return false;
         }
+
+
+
+
 
         public async Task<bool> CreateTaskList(string owner, TasksList tasksList)
         {
@@ -183,7 +187,7 @@ namespace Helsi_TestTask.Models
 
         public async Task<bool> TasksListExists(string userid, string Name)
         {
-            var existing =await Context.GetTasksLists().FirstAsync(x => x.Owner == userid && x.Name == Name);
+            var existing =await Context.GetTasksLists().FirstOrDefaultAsync(x => x.Owner == userid && x.Name == Name);
             if (existing==null)return false;
 
             return true;
